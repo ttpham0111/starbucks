@@ -42,7 +42,8 @@ public class ObserverPatternTest
     @Test
     public void testOneKey()
     {
-        keyPad.touch(1, 1);
+        this.keyPad.touch(1, 1);
+        System.out.println(this.pinEntryMachine.d1());
         assertEquals(this.pinEntryMachine.d1(), "1");
     }
 
