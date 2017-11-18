@@ -59,3 +59,10 @@ dependencies {
 shadowJar {
     baseName = 'starbucks'
 }
+
+
+test {
+    testLogging {
+        showStandardStreams = true
+    }
+}

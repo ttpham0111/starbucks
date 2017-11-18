@@ -17,6 +17,8 @@ import org.junit.Test;
  */
 public class ObserverPatternTest
 {
+    KeyPad keyPad;
+    PinEntryMachine pinEntryMachine;
     
     /**
      * Default constructor for test class ObserverPatternTest
@@ -33,66 +35,70 @@ public class ObserverPatternTest
     @Before
     public void setUp()
     {
-        this.keyPad = new KeyPad();
-        this.pinEntryMachine = new PinEntryMachine();
-        this.keyPad.attach(this.pinEntryMachine);
+        keyPad = new KeyPad();
+        pinEntryMachine = new PinEntryMachine();
+        keyPad.attach(pinEntryMachine);
     }
 
 
     @Test
     public void testOneKey()
     {
-        this.keyPad.touch(1, 1);
-        System.out.println(this.pinEntryMachine.d1());
-        assertEquals(this.pinEntryMachine.d1(), "1");
+        keyPad.touch(1, 5);
+        System.out.println( pinEntryMachine.getCurrentState() ) ;
+        assertEquals(pinEntryMachine.d1(), "1");
     }
 
     @Test
     public void testTwoKeys()
     {
-        // Key Pad Press 1 and 2
-
-        // Assert D1 and D2 are correct 
-        // (replace with appropriate test)
-        assertTrue( false ) ;
+        keyPad.touch(1, 5);
+        keyPad.touch(2, 5);
+        assertEquals(pinEntryMachine.d1(), "1");
+        assertEquals(pinEntryMachine.d2(), "2");
     }
 
     @Test
     public void testThreeKeys()
     {
-        // Key Pad Press 1, 2 and 3
-
-        // Assert D1, D2 and D3 are correct
-        // (replace with appropriate test)
-        assertTrue( false ) ;
+        keyPad.touch(1, 5);
+        keyPad.touch(2, 5);
+        keyPad.touch(3, 5);
+        assertEquals(pinEntryMachine.d1(), "1");
+        assertEquals(pinEntryMachine.d2(), "2");
+        assertEquals(pinEntryMachine.d3(), "3");
      }
 
     @Test
     public void testFourKeys()
     {
-        // Key Pad Press 1, 2, 3 and 4
-
-        // Assert D1, D2, D3 and D4 are correct
-        // (replace with appropriate test)
-        assertTrue( false ) ;
+        keyPad.touch(1, 5);
+        keyPad.touch(2, 5);
+        keyPad.touch(3, 5);
+        keyPad.touch(1, 6);
+        assertEquals(pinEntryMachine.d1(), "1");
+        assertEquals(pinEntryMachine.d2(), "2");
+        assertEquals(pinEntryMachine.d3(), "3");
+        assertEquals(pinEntryMachine.d4(), "4");
     }
 
    @Test
     public void testBackspace()
     {
-        // Key Pad Press 1, 2, 3 and 4
+        keyPad.touch(1, 5);
+        keyPad.touch(2, 5);
+        keyPad.touch(3, 5);
+        keyPad.touch(1, 6);
+        assertEquals(pinEntryMachine.d1(), "1");
+        assertEquals(pinEntryMachine.d2(), "2");
+        assertEquals(pinEntryMachine.d3(), "3");
+        assertEquals(pinEntryMachine.d4(), "4");
 
-        // Assert D1, D2, D3, D4 are correct
-        // (replace with appropriate test)
-        assertTrue( false ) ;
-
-        // Key Pad Press 1, 2, 3 and 4 and then backspace
-
-
-        // Assert D1, D2, D3, D4 are correct
-        // (replace with appropriate test)
-        assertTrue( false ) ;        
-
+        keyPad.touch(3, 8);
+        assertEquals(pinEntryMachine.d1(), "1");
+        assertEquals(pinEntryMachine.d2(), "2");
+        assertEquals(pinEntryMachine.d3(), "3");
+        assertEquals(pinEntryMachine.d4(), "");        
     }
     
 
