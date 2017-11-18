@@ -33,18 +33,17 @@ public class ObserverPatternTest
     @Before
     public void setUp()
     {
-        // Set up Key Pad and Pin Entry Machine
-        // Using Observer Pattern  
+        this.keyPad = new KeyPad();
+        this.pinEntryMachine = new PinEntryMachine();
+        this.keyPad.attach(this.pinEntryMachine);
     }
 
 
     @Test
     public void testOneKey()
     {
-        // Key Pad Press 1
-
-        // Assert D1 is "1" (replace with appropriate test)
-        assertTrue( false ) ;
+        keyPad.touch(1, 1);
+        assertEquals(this.pinEntryMachine.d1(), "1");
     }
 
     @Test
